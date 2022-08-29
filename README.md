@@ -6,4 +6,4 @@ I have created this site just for fun. I want to try to create site with interes
 This site is in WORKING and keep in mind that I used free version of w3 schools hosting so it has limited requests ! I hope you will enjoy this little project.
 </p>
 <br>
-<h2><b><a href="https://www.w3spaces-preview.com/lubos-source/index.html" target="_blank"> MAIN project SITE </a></b> </h2>
+<h2><b><a href="https://lubos-source.w3spaces.com/" target="_blank"> MAIN project SITE </a></b> </h2>
