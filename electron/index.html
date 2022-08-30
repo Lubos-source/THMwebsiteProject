@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     
@@ -11,11 +12,11 @@
   <div id="container">
     <h1 class="text heading" id=green>FLAG reader</h1>
     <br>
-    <form onsubmit="sub(document.getElementById('flag').value);" method="GET" autocomplete="off">
+    <form onsubmit="#" method="POST" autocomplete="off">
       <div class="form-field">
       <input name="flag" type="text" id="flag" class="check-ex" data-type="flag" placeholder="Enter found FLAG"></label>
-      <span class="check-existing-flag text" id=red data-type="flag"></span>
-      <input type="submit" value="Flag It !">
+      <div class="check-existing-flag text" id=red data-type="flag"></div>
+      
       </div>
     </form>
     
@@ -25,30 +26,11 @@
   </div>
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
-    <script src="./submiter.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./check.js"></script>
     <script>
       $('.check-ex').existChecker();
     </script>
-
-
-    <script>
-    const argon2 = require('argon2');
-
-    function hashit(flag){
-
-    try {
-        const hash = argon2.hash(flag);
-      } catch (err) {
-        //...
-      }
-      return hash   
-    }
-
-    majhash=hashit("LubosSource542sa62s3x1y47s8sad92bg5iz2r1c");
-
-    console.log(majhash)
-    </script>
+<script src="node_modules/argon2-browser/dist/argon2-bundled.min.js"></script>
   </body>
 </html>

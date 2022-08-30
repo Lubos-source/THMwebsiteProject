@@ -1,6 +1,6 @@
 {
-  "name": "alluring-policy-avoid-hxysr",
-  "productName": "alluring-policy-avoid-hxysr",
+  "name": "electron",
+  "productName": "electron",
   "description": "My Electron application description",
   "keywords": [],
   "main": "./main.js",
@@ -9,8 +9,10 @@
   "scripts": {
     "start": "electron ."
   },
-  "dependencies": {},
+  "dependencies": {
+    "argon2-browser": "1.18.0"
+  },
   "devDependencies": {
-    "electron": "19.0.6"
+    "electron": "20.1.0"
   }
 }
