@@ -1,0 +1,16 @@
+{
+  "name": "alluring-policy-avoid-hxysr",
+  "productName": "alluring-policy-avoid-hxysr",
+  "description": "My Electron application description",
+  "keywords": [],
+  "main": "./main.js",
+  "version": "1.0.0",
+  "author": "lubos",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "19.0.6"
+  }
+}
