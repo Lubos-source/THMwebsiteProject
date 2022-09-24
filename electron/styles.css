@@ -40,6 +40,11 @@ text-align: center;
 
 }
 
+.res{
+  text-align: center;
+  font-size: 33px;
+}
+
 /*Neon*/
 .text {
   margin-bottom: 0;
