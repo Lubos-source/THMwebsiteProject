@@ -21,6 +21,14 @@ body {
     left: 40%;
 }
 
+#restart{
+  position: fixed;
+  bottom: 42px;
+  padding: 5px;
+  left:28%;
+  text-align: center;
+  }
+
 #container {
   padding: 5px;
   display: flex;

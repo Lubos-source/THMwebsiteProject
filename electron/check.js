@@ -1,47 +1,14 @@
 var flagerion;
 const forbidenchars=["%","'",'"'];
-
-hashe="$argon2d$v=19$m=1024,t=1,p=1$cmFuRG9tNVNDYWwzNEx1YjBTczB1cmMzc2FsVA$OTFz0Txx41lGL9OMfLCIyLWdZF1Am6xu\n$argon2d$v=19$m=1024,t=1,p=1$cmFuRG9tNVNDYWwzNEx1YjBTczB1cmMzc2FsVA$q2/vxZCq8Kah/m/7ZdCEK7w2CFG6G7ol\n$argon2d$v=19$m=1024,t=1,p=1$cmFuRG9tNVNDYWwzNEx1YjBTczB1cmMzc2FsVA$sVnwfl4rAqT9bW51KcXYNxSOfkYKpV9/\n$argon2d$v=19$m=1024,t=1,p=1$cmFuRG9tNVNDYWwzNEx1YjBTczB1cmMzc2FsVA$dDu32acMEMfapjSXGmrJa9SkK+t1AmDF\n$argon2d$v=19$m=1024,t=1,p=1$cmFuRG9tNVNDYWwzNEx1YjBTczB1cmMzc2FsVA$tMMIW90BJZSkJprC1lobWy6YqppvOlQE\n$argon2d$v=19$m=1024,t=1,p=1$cmFuRG9tNVNDYWwzNEx1YjBTczB1cmMzc2FsVA$Wf5khzh+PAXVMMHjG5QKU4W93GRn1VuJ\n$argon2d$v=19$m=1024,t=1,p=1$cmFuRG9tNVNDYWwzNEx1YjBTczB1cmMzc2FsVA$7BpGFgHGvhWp48gZ1nobdsFaIqo/yKL3\n$argon2d$v=19$m=1024,t=1,p=1$cmFuRG9tNVNDYWwzNEx1YjBTczB1cmMzc2FsVA$rnrjJKS+QVVrA6CN+lZ0UzD7V0KmCu7W\n$argon2d$v=19$m=1024,t=1,p=1$cmFuRG9tNVNDYWwzNEx1YjBTczB1cmMzc2FsVA$i3LKjKd6n0CEFY4lTUz2GD0Y8xkjwspE\n"
+var array;
 
 var fs = require('fs');
 
-fs.open('./flags.txt','w', function(err, file){
-    if (err) console.log(err);
-    console.log("file saved");
-});
-
-fs.appendFile('./flags.txt',hashe ,function(err){
-    if (err) console.log(err);
-    console.log("file updated.");
-});
-
-fs.readFile('./flags.txt', function(err, data) {
+fs.readFile('../flags.txt', function(err, data) {
     if(err) console.log(err);
-    document.getElementById("violet").innerHTML = data;
-    console.log("data", data);
+    array=data.toString();
+    array=array.split(/\r?\n/);
   });
-
-  /*  
-  
-  Need to create something like memory. Need to save the progress of found flags. Working on basic txt file where will be stored hashes and if someone is found then remove it and save file. Need to findout how this local file rewriting is working. Now its is creating file in Temp folder, but i want to load file which will be included with app.... 
- 
- NEED TO FIGER OUT HOW.
-
-   */
-/*
-const hashes = fs.readFile('flags.txt', function(err, data){
-    array=data;
-    return array;
-});
-console.log("loaded hashes:"+hashes);
-console.log("size of hashes: "+hashes.length);
-*/
-
-/*
-fetch('./flags.txt')
-  .then(response => response.text())
-  .then(text => console.log(text));
-*/
 
 $.fn.existChecker = function(){
 return this.each(function(){
@@ -53,16 +20,13 @@ return this.each(function(){
         var selfType=self.data('type');
         var selfValue;
         feedback = $('.check-existing-flag[data-type='+ selfType +']');
-        //feedback.text('FEEDYBACK');
-        //console.log(selfType);
+
         if(interval === undefined){
             interval=setInterval(function(){
                 if(selfValue != self.val()){
                     selfValue = self.val();
                 
-                    if(selfValue.length > 1){
-                        //pouzit checker
-                        //checking agains forbiden chacters :)
+                    if(selfValue.length > 0){
 feedback.text("");
 document.getElementById("submitbut").type = "submit";                        
 for(var i=0;i<selfValue.length;i++){
@@ -73,10 +37,6 @@ for(var i=0;i<selfValue.length;i++){
         }
     }
 }
-                    
-//chnage long hash by my secret hashes
-//if the has has been already found, somehow delete it ? or remember it.
-
                     }
                 }
                 }, 2000 );
@@ -85,8 +45,22 @@ for(var i=0;i<selfValue.length;i++){
     });
 
 });
-
 };
+
+function rewritefun(arr){
+newarray = arr;
+var stringarray;
+for(i=0;i<newarray.length;i++){
+    if (stringarray==undefined) {stringarray=newarray[i]+"\n";}
+    else{
+    stringarray=stringarray+newarray[i]+"\n";
+    }
+}
+console.log("string array is : ", stringarray);
+fs.writeFile("../flags.txt", stringarray, function(err){
+    if (err) console.log(err);
+})
+}
 
 function confets(){
     const jsConfetti = new JSConfetti()
@@ -96,26 +70,64 @@ function confets(){
     });
 }
 
-
 const argon2 = require('argon2-browser');
-let res="Wrong flag";
 
-function validateFlag(){
+async function justforrun(ress){
+    res=ress;
     let x = document.forms["FlagForm"]["flag"].value;
+    var isright=0;
 
-    //console.log("loaded hashes:"+hashes);
+    if(x==="RESTART please!"){
+        fs.unlink("../flags.txt",function(err){
+            if(err) throw err;
+        });
+        document.getElementById("violet").innerHTML = "SUCESSFULLY restarted, please close aplication to continue...";
+    }
+    else{
+    for(i=0;i<array.length;i++){
+        enc=array[i];
+
+    await argon2.verify({ pass: ''+x+'', encoded: enc })
+    .then(() => {
+        isright=1;
+        confets();    
+        array.splice(i,1);
+        rewritefun(array);
+        })
+    .catch(e => {
+        });
+
+    }
     
-    for(i=0;i<hashes.length;i++){
-        enc=hashes[i];
-
-    argon2.verify({ pass: ''+x+'', encoded: enc })
-    .then(() => {res="RIGHT flag, congratulations";console.log("YES.");confets();document.getElementById("violet").innerHTML = res;})
-    .catch(e => {res="Wrong flag";console.log("NOpes.");});
+    if(isright!=1){
+        document.getElementById("violet").innerHTML = "Wrong flag";
+    }else   {
+        document.getElementById("violet").innerHTML = "RIGHT flag, congratulations";
+            }
+        }
     }
 
-    document.getElementById("violet").innerHTML = res;
-    
-    
+function validateFlag(){
+    let res="DEFAULT Wrong flag";
+    justforrun(res);
     return false;
 }
-// Empty
+
+/*
+
+Validation from array loaded from txt file almosto working
+I have found some suspicious behavior.
+Text is changed for "RIGHT one" just if the validation match last element of array.
+If the validation match another one except of last one it DOES NOT change the text, but !!! confeti works in both scenarios... suspicious..
+
+*SOLVED by:
+added isright variable and changing after completing all for loop.
+Becouse .then(...) DO NOT allow break; sadly.
+
+--------
+
+AFTER comleting this problem, lets remove old "flags.txt" file and recreate it with localy saved array in program. Before closing program (BEST option) or after sucesfully finding out the right FLAG (easier).
+
+*DONE
+
+ */
