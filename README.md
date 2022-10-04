@@ -6,7 +6,19 @@ I have created this site just for fun. I want to try to create site with interes
 This site is in WORKING and keep in mind that I used free version of w3 schools hosting so it has limited requests ! I hope you will enjoy this little project.
 </p>
 <br>
+<h3>TO DO:</h3>
+<p><b>CTF Challanges:</b><br>
+Web <br>
+Forensics <br>
+Miscellaneous <br>
+Cryptography <br>
+Networking <br>
+Reversing <br>
+Pwn / Exploit <br>
+Malware analysis <br>
 
+</p>
+<br>
 <h2><b><a href="https://lubos-source.github.io/THMWebsite/" target="_blank"> MAIN project SITE </a></b> </h2>
 <br>
 <br>
