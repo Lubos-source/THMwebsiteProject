@@ -23,5 +23,6 @@ Malware analysis <br>
 <br>
 <br>
 <br>
-<h4><a href="https://lubos-source.w3spaces.com/" target="_blank"> backup project SITE </a> </h4>
+<h4><a href="http://thmlubossourcewebsite.wz.cz/" target="_blank"> Another hosting </a> </h4>
 
+<h4><a href="https://lubos-source.w3spaces.com/" target="_blank"> backup project SITE </a> </h4>
